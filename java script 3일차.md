@@ -39,3 +39,11 @@ json- 데이터를 나타내기에 최적화된 포맷  /xml
 ​    }
 
 ​    console.log(sum +"/"+ avg);
+
+- map
+
+- reduce() 메소드
+
+   하나로 합친값을 더해 저장
+
+  
