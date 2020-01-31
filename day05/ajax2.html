@@ -4,15 +4,20 @@
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
     $(document).ready(function(){
+      $('#btnsubmit').on('click',function(){
+        let city = $('#city').val();
+        // let city =$('#city > option:selected').val();
+      if(city !=null && city != ''){
       $.ajax({
         url:"http://api.openweathermap.org/data/2.5/forecast",
-        method: "GET",
+        type: "GET",
         data: {
-          q: "seoul",
+          q:  $('#city > option:selected').val(),
           APPID:"05542e36559de019967088aaa2ccb705",
           units:"metric"
         },
         success : function(data){
+           $('#contents').empty();
           $.each(data.list, function(index, item) {
             let _image = document.createElement("img");
             _image.src = "http://openweathermap.org/img/wn/" 
@@ -32,22 +37,37 @@
             let div = document.createElement("div");
             div.appendChild(imageSpan);
             div.appendChild(infoSpan);
-
+           
             $('#contents').append(div);
+          
                     
             });
+           
         },
         error: function(err){
           console.log("error" + err);
         }
     
       });
+    
+    }
     });
-
+  });
    
      </script>
 </head>
     <body>
+     
+        <!-- <input type="text" name="city" id="city" placeholder="도시를 입력하세요"> -->
+        <!-- <input type="button" id="btnsubmit" value="검색"> -->
+        
+        <select>
+          <option id="city" value="seoul">서울</option>
+          <option id="city" value="london">런던</option>
+          <option id="city" value="tokyo">도쿄</option>
+        </select>
+     <button id ="btnsubmit" >검색</button>
         <div id="contents">
     </body>
+
 </html>
